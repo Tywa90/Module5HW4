@@ -1,7 +1,7 @@
 // pages
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Products from "./pages/Products";
+import Resources from "./pages/Resources";
 import User from "./pages/User";
 
 // other
@@ -32,17 +32,17 @@ export const routes: Array<Route> = [
         component: About
     },
     {
-        key: 'products-route',
-        title: 'Products',
-        path: '/products',
-        enabled: true,
-        component: Products
-    },
-    {
         key: 'user-route',
         title: 'User',
         path: '/user/:id',
         enabled: false,
         component: User
+    },
+    {
+        key: 'resources-route',
+        title: 'Resources',
+        path: '/resources',
+        enabled: true,
+        component: Resources
     }
 ]
