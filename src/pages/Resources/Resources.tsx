@@ -28,7 +28,9 @@ const Home: FC<any> = (): ReactElement => {
     }, [currentPage])
 
   return (
-      <Container>
+      <Container sx={{
+        flexGrow: 1,
+      }}>
           <Grid container spacing={4} justifyContent="center" my={4}>
               {isLoading ? (
                   <CircularProgress />

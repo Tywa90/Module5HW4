@@ -38,7 +38,12 @@ const User: FC<any> = (): ReactElement => {
     }, [id])
 
     return (
-        <Container>
+        <Container sx={{
+            flexGrow: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
             <Grid container spacing={4} justifyContent="center" m={4}>
                 {isLoading ? (
                     <CircularProgress />

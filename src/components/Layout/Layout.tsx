@@ -19,6 +19,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
           minHeight: "100vh",
           maxWidth: "100vw",
           flexGrow: 1,
+          backgroundColor: "whitesmoke",
         }}
       >
         <Navbar />
