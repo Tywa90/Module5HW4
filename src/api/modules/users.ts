@@ -1,3 +1,4 @@
+import { useState } from "react";
 import apiClient from "../client";
 
 export const getById = (id: string) => apiClient({
@@ -8,4 +9,10 @@ export const getById = (id: string) => apiClient({
 export const getByPage = (page: number) => apiClient({
   path: `users?page=${page}`,
   method: 'GET'
+})
+
+export const createUser = (name: string, job: string) => apiClient({
+  path: "users",
+  method: "POST",
+  data: { name, job }
 })
