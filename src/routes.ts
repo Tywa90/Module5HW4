@@ -5,6 +5,7 @@ import Resources from "./pages/Resources";
 import User from "./pages/User";
 import Resource from "./pages/Resource/Resource";
 
+
 // other
 import {FC} from "react";
 
@@ -52,5 +53,5 @@ export const routes: Array<Route> = [
         path: '/resource/:id',
         enabled: false,
         component: Resource
-    }
+    },
 ]

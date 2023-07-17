@@ -1,4 +1,3 @@
-import { useState } from "react";
 import apiClient from "../client";
 
 export const getById = (id: string) => apiClient({
