@@ -9,7 +9,7 @@ const CreateUserCard: FC<ICreateUser> = (props): ReactElement => {
 
      return (
         <Card sx={{ maxWidth: 250 }}>
-            <CardActionArea onClick={() => navigate(`/new-user`)}>
+            <CardActionArea onClick={() => navigate(`/users`)}>
                 <CardContent>
                     <Typography noWrap gutterBottom variant="h6" component="div">
                         {props.id}

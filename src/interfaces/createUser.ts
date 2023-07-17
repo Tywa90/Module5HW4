@@ -1,6 +1,6 @@
 export interface ICreateUser {
     'name': string,
     'job': string,
-    'id': number,
+    'id': string,
     'createdAt': string
 }

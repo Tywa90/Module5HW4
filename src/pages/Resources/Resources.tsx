@@ -5,7 +5,7 @@ import {IResource} from "../../interfaces/resources";
 import ResourceCard from "./components";
 
 const Resource: FC<any> = (): ReactElement => {
-    const [resources, setUsers] = useState<IResource[] | null>(null)
+    const [resources, setResources] = useState<IResource[] | null>(null)
     const [totalPages, setTotalPages] = useState<number>(0)
     const [currentPage, setCurrentPage] = useState<number>(1)
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -15,7 +15,7 @@ const Resource: FC<any> = (): ReactElement => {
             try {
                 setIsLoading(true)
                 const res = await resourceApi.getByPage(currentPage)
-                setUsers(res.data)
+                setResources(res.data)
                 setTotalPages(res.total_pages)
             } catch (e) {
                 if (e instanceof Error) {
