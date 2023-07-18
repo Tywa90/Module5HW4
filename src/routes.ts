@@ -4,6 +4,8 @@ import About from "./pages/About";
 import Resources from "./pages/Resources";
 import User from "./pages/User";
 import Resource from "./pages/Resource/Resource";
+import UserCreate from "./pages/User/UserCreate";
+import UserUpdate from "./pages/User/UserUpdate";
 
 
 // other
@@ -53,5 +55,19 @@ export const routes: Array<Route> = [
         path: '/resource/:id',
         enabled: false,
         component: Resource
+    },
+    {
+        key: 'userUpdate-route',
+        title: 'UserUpdate',
+        path: '/user/update/:id',
+        enabled: false,
+        component: UserUpdate
+    },
+    {
+        key: 'userCreate-route',
+        title: 'UserCreate',
+        path: '/user/create',
+        enabled: false,
+        component: UserCreate
     },
 ]

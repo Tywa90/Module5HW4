@@ -15,3 +15,9 @@ export const createUser = (name: string, job: string) => apiClient({
   method: "POST",
   data: { name, job }
 })
+
+export const updateUser = (id: string, name: string, job: string) => apiClient({
+  path: `users/${id}`,
+  method: "PUT",
+  data: { name, job }
+})

@@ -3,7 +3,6 @@ import { Box, CircularProgress, Container, Grid, Pagination, Typography } from '
 import * as userApi from "../../api/modules/users"
 import { ICreateUser } from "../../interfaces/createUser";
 import CreateUserCard from "./components";
-import User from "../User/User";
 
 const About: FC<any> = (props): ReactElement => {
   const [users, setUsers] = useState<ICreateUser[] | null>(null)

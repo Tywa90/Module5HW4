@@ -1,4 +1,4 @@
-import React, {ReactElement, FC, useEffect, useState} from "react";
+import React, { ReactElement, FC, useEffect, useState } from "react";
 import {
     Box,
     Card,
@@ -8,16 +8,19 @@ import {
     Container,
     Grid,
     Pagination,
-    Typography
+    Typography,
+    Button
 } from '@mui/material'
 import * as userApi from "../../api/modules/users"
-import {IUser} from "../../interfaces/users";
-import {useParams} from "react-router-dom";
+import { IUser } from "../../interfaces/users";
+import { useNavigate, useParams } from "react-router-dom";
 
 const User: FC<any> = (): ReactElement => {
     const [user, setUser] = useState<IUser | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const { id } = useParams()
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (id) {
@@ -43,8 +46,8 @@ const User: FC<any> = (): ReactElement => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-          }}>
-            <Grid container spacing={4} justifyContent="center" m={4}>
+        }}>
+            <Grid justifyContent="center">
                 {isLoading ? (
                     <CircularProgress />
                 ) : (
@@ -65,6 +68,14 @@ const User: FC<any> = (): ReactElement => {
                                 </Typography>
                             </CardContent>
                         </Card>
+                        <Box sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                        }}>
+                            <Button onClick={() => {navigate('/user/update')}} variant="contained" color="success" sx={{ marginTop: 3, backgroundColor: "secondary.main" }}>
+                                UPDATE USER
+                            </Button>
+                        </Box>
                     </>
                 )}
             </Grid>
