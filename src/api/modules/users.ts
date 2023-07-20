@@ -21,3 +21,4 @@ export const updateUser = (id: string, name: string, job: string) => apiClient({
   method: "PUT",
   data: { name, job }
 })
+

@@ -1,12 +1,10 @@
 import React, { ReactElement, FC, useState } from "react";
 import {
     Box,
-    CircularProgress,
     Container,
     Button,
     FormControl,
     TextField,
-    Backdrop,
     Dialog,
     DialogTitle,
     DialogContent,
@@ -14,12 +12,14 @@ import {
     DialogActions
 } from '@mui/material'
 import * as userApi from "../../../api/modules/users";
+import { useNavigate } from "react-router-dom";
 
 const UserCreate: FC<any> = (): ReactElement => {
     const [name, setName] = useState('');
     const [job, setJob] = useState('');
     const [response, setResponse] = useState<any>(null);
     const [open, setOpen] = React.useState(false);
+    const navigate = useNavigate();
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +53,9 @@ const UserCreate: FC<any> = (): ReactElement => {
         setOpen(false);
     };
 
+    function refreshPage() {
+        window.location.reload();
+    }
 
     return (
         <Container sx={{
@@ -61,10 +64,12 @@ const UserCreate: FC<any> = (): ReactElement => {
             justifyContent: "center",
             alignItems: "center",
         }}>
-            {/* new try */}
             {!response ? (
+
+
                 <form onSubmit={handleSubmit}>
                     <FormControl size='medium' margin='normal' style={{ display: 'flex', gap: '20px' }}>
+
                         <TextField
                             id="my-input"
                             label="Name"
@@ -94,15 +99,15 @@ const UserCreate: FC<any> = (): ReactElement => {
                     </FormControl>
                 </form>
             ) : (
-                <>
+                <Box>
                     <Dialog
                         open={open}
                         onClose={handleClose}
                         aria-labelledby="alert-dialog-title"
                         aria-describedby="alert-dialog-description"
                     >
-                        <DialogTitle id="alert-dialog-title" color="success">
-                            {"User was created"}
+                        <DialogTitle id="alert-dialog-title">
+                            {"User was created!"}
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-description">
@@ -120,140 +125,28 @@ const UserCreate: FC<any> = (): ReactElement => {
                             </Button>
                         </DialogActions>
                     </Dialog>
-                </>
+                    <Box sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 10,
+                    }}>
+                        <Button
+                            variant="contained"
+                            color="success"
+                            sx={{ backgroundColor: "secondary.main" }} onClick={refreshPage}>
+                            Create another user
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="success"
+                            sx={{ backgroundColor: "secondary.main" }} onClick={() => navigate(`/`)}>
+                            Back to users page
+                        </Button>
+                    </Box>
+                </Box>
             )}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {/* {!response ? (
-                <form onSubmit={handleSubmit}>
-                    <FormControl size='medium' margin='normal' style={{ display: 'flex', gap: '20px' }}>
-                        <TextField
-                            id="my-input"
-                            label="Name"
-                            name="name"
-                            value={name}
-                            onChange={handleChange}
-                            required
-                            color="success"
-                        />
-                        <TextField
-                            id="my-job"
-                            label="Job"
-                            name="job"
-                            value={job}
-                            onChange={handleChange}
-                            required
-                            color="success"
-                        />
-                        <Box sx={{ display: 'flex', justifyContent: "center", marginTop: '1rem' }} >
-
-                            <Button type="submit"
-                                variant="contained"
-                                color="success"
-                                sx={{ backgroundColor: "secondary.main" }} onClick={handleClickOpen}>
-                                Open alert dialog
-                            </Button>
-                        </Box>
-                    </FormControl>
-                    ) : ()
-        }
-
-                    <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description"
-                    >
-                        <DialogTitle id="alert-dialog-title">
-                            {"User was created"}
-                        </DialogTitle>
-                        <DialogContent>
-                            <DialogContentText id="alert-dialog-description">
-                                <Box sx={{ marginTop: '1rem', textAlign: 'left' }} >
-
-                                    <h3>User ID: {response.id}</h3>
-                                    <h3>Name: {name}</h3>
-                                    <h3>Job: </h3>
-                                    <h3>Created at: </h3>
-                                </Box>
-                            </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={handleClose} autoFocus>
-                                OK
-                            </Button>
-                        </DialogActions>
-                    </Dialog>
-
-                    <Button type="submit"
-                        variant="contained"
-                        color="success"
-                        sx={{ backgroundColor: "secondary.main" }}>Create user
-                    </Button>
-                </Box>
-                    </FormControl>
-                </form > */}
-
-
-
-            {/* {!response ? (
-                <form onSubmit={handleSubmit}>
-                    <FormControl size='medium' margin='normal' style={{ display: 'flex', gap: '20px' }}>
-                        <TextField
-                            id="my-input"
-                            label="Name"
-                            name="name"
-                            value={name}
-                            onChange={handleChange}
-                            required
-                            color="success"
-                        />
-                        <TextField
-                            id="my-job"
-                            label="Job"
-                            name="job"
-                            value={job}
-                            onChange={handleChange}
-                            required
-                            color="success"
-                        />
-                        <Box sx={{ display: 'flex', justifyContent: "center", marginTop: '1rem' }} >
-                            <Button type="submit"
-                                variant="contained"
-                                color="success"
-                                sx={{ backgroundColor: "secondary.main" }}>Create user
-                            </Button>
-                        </Box>
-                    </FormControl>
-                </form>
-            ) : (
-                <Box sx={{ marginTop: '1rem', textAlign: 'left' }} >
-                    <h1>User created</h1>
-                    <h3>User ID: {response.id}</h3>
-                    <h3>Name: {response.name}</h3>
-                    <h3>Job: {response.job}</h3>
-                    <h3>Created at: {response.createdAt}</h3>
-                </Box>
-            )} */}
         </Container >
     )
 }
 
-export default UserCreate
+export default UserCreate;

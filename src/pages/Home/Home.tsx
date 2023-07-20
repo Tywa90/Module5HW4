@@ -4,6 +4,7 @@ import * as userApi from "../../api/modules/users"
 import { IUser } from "../../interfaces/users";
 import UserCard from "./components";
 import { useNavigate } from "react-router-dom";
+import Icon from "../../components/Icons"
 
 const Home: FC<any> = (): ReactElement => {
     const [users, setUsers] = useState<IUser[] | null>(null)
@@ -39,7 +40,7 @@ const Home: FC<any> = (): ReactElement => {
             <Box sx={{ marginTop: 3, display: "flex", justifyContent: "center" }}>
                 <Button onClick={() => { navigate('/user/create') }} variant="contained" color="success"
                     sx={{ backgroundColor: "secondary.main" }}>
-                    + ADD USER
+                    <Icon />ADD USER
                 </Button>
             </Box>
 

@@ -14,6 +14,7 @@ import {
 import * as userApi from "../../api/modules/users"
 import { IUser } from "../../interfaces/users";
 import { useNavigate, useParams } from "react-router-dom";
+import UpdateUserIcon from "../../components/Icons/UpdateUserIcon";
 
 const User: FC<any> = (): ReactElement => {
     const [user, setUser] = useState<IUser | null>(null)
@@ -72,8 +73,8 @@ const User: FC<any> = (): ReactElement => {
                             display: "flex",
                             justifyContent: "center",
                         }}>
-                            <Button onClick={() => {navigate('/user/update')}} variant="contained" color="success" sx={{ marginTop: 3, backgroundColor: "secondary.main" }}>
-                                UPDATE USER
+                            <Button onClick={() => {navigate(`/user/update/${id}/${user?.first_name}/${user?.last_name}`)}} variant="contained" color="success" sx={{ marginTop: 3, backgroundColor: "secondary.main" }}>
+                                <UpdateUserIcon/>UPDATE USER
                             </Button>
                         </Box>
                     </>

@@ -1,11 +1,10 @@
 // pages
 import Home from "./pages/Home";
-import About from "./pages/About";
 import Resources from "./pages/Resources";
 import User from "./pages/User";
 import Resource from "./pages/Resource/Resource";
 import UserCreate from "./pages/User/UserCreate";
-import UserUpdate from "./pages/User/UserUpdate";
+import UserUpdate from "./pages/User/UserUpdate/UserUpdate";
 
 
 // other
@@ -23,17 +22,10 @@ interface Route {
 export const routes: Array<Route> = [
     {
         key: 'home-route',
-        title: 'Home',
+        title: 'Users',
         path: '/',
         enabled: true,
         component: Home
-    },
-    {
-        key: 'about-route',
-        title: 'About',
-        path: '/about',
-        enabled: true,
-        component: About
     },
     {
         key: 'user-route',
@@ -41,6 +33,13 @@ export const routes: Array<Route> = [
         path: '/user/:id',
         enabled: false,
         component: User
+    },
+    {
+        key: 'userUpdate-route',
+        title: 'UserUpdate',
+        path: `/user/update/:id/:firstName/:lastName`,
+        enabled: false,
+        component: UserUpdate
     },
     {
         key: 'resources-route',
@@ -55,13 +54,6 @@ export const routes: Array<Route> = [
         path: '/resource/:id',
         enabled: false,
         component: Resource
-    },
-    {
-        key: 'userUpdate-route',
-        title: 'UserUpdate',
-        path: '/user/update/:id',
-        enabled: false,
-        component: UserUpdate
     },
     {
         key: 'userCreate-route',
