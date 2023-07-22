@@ -1,4 +1,4 @@
-import React, {ReactElement, FC, useEffect, useState} from "react";
+import React, { ReactElement, FC, useEffect, useState } from "react";
 import {
     Box,
     Card,
@@ -8,16 +8,20 @@ import {
     Container,
     Grid,
     Pagination,
-    Typography
+    Typography,
+    Button
 } from '@mui/material'
 import * as userApi from "../../api/modules/users"
-import {IUser} from "../../interfaces/users";
-import {useParams} from "react-router-dom";
+import { IUser } from "../../interfaces/users";
+import { useNavigate, useParams } from "react-router-dom";
+import UpdateUserIcon from "../../components/Icons/UpdateUserIcon";
 
 const User: FC<any> = (): ReactElement => {
     const [user, setUser] = useState<IUser | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const { id } = useParams()
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (id) {
@@ -38,8 +42,13 @@ const User: FC<any> = (): ReactElement => {
     }, [id])
 
     return (
-        <Container>
-            <Grid container spacing={4} justifyContent="center" m={4}>
+        <Container sx={{
+            flexGrow: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+        }}>
+            <Grid justifyContent="center">
                 {isLoading ? (
                     <CircularProgress />
                 ) : (
@@ -60,6 +69,14 @@ const User: FC<any> = (): ReactElement => {
                                 </Typography>
                             </CardContent>
                         </Card>
+                        <Box sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                        }}>
+                            <Button onClick={() => {navigate(`/user/update/${id}/${user?.first_name}/${user?.last_name}`)}} variant="contained" color="success" sx={{ marginTop: 3, backgroundColor: "secondary.main" }}>
+                                <UpdateUserIcon/>UPDATE USER
+                            </Button>
+                        </Box>
                     </>
                 )}
             </Grid>
