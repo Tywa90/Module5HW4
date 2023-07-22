@@ -23,12 +23,14 @@ const UserCreate: FC<any> = (): ReactElement => {
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        if (name === 'name') {
-            setName(value);
-        }
-        if (name === 'job') {
-            setJob(value);
+        const { id, value } = event.target;
+        switch (id) {
+            case 'name-input':
+                return setName(value);
+            case 'job-input':
+                return setJob(value);
+            default:
+                return console.log('something wrong in switch/case');
         }
     };
 
@@ -71,7 +73,7 @@ const UserCreate: FC<any> = (): ReactElement => {
                     <FormControl size='medium' margin='normal' style={{ display: 'flex', gap: '20px' }}>
 
                         <TextField
-                            id="my-input"
+                            id="name-input"
                             label="Name"
                             name="name"
                             value={name}
@@ -80,7 +82,7 @@ const UserCreate: FC<any> = (): ReactElement => {
                             color="success"
                         />
                         <TextField
-                            id="my-job"
+                            id="job-input"
                             label="Job"
                             name="job"
                             value={job}

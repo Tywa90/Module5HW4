@@ -9,12 +9,13 @@ const Resource: FC<any> = (): ReactElement => {
     const [totalPages, setTotalPages] = useState<number>(0)
     const [currentPage, setCurrentPage] = useState<number>(1)
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const resourcePath = 'unknown'
 
     useEffect(() => {
         const getResource = async () => {
             try {
                 setIsLoading(true)
-                const res = await resourceApi.getByPage(currentPage)
+                const res = await resourceApi.getByPage(resourcePath, currentPage)
                 setResources(res.data)
                 setTotalPages(res.total_pages)
             } catch (e) {

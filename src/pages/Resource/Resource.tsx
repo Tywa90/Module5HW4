@@ -19,13 +19,14 @@ const Resource: FC<any> = (): ReactElement => {
     const [resource, setResource] = useState<IResource | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const { id } = useParams()
+    const resourcePath = 'unknown'
 
     useEffect(() => {
         if (id) {
             const getResource = async () => {
                 try {
                     setIsLoading(true)
-                    const res = await ResourceApi.getById(id)
+                    const res = await ResourceApi.getById(resourcePath, id)
                     setResource(res.data)
                 } catch (e) {
                     if (e instanceof Error) {

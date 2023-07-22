@@ -1,11 +1,11 @@
 import apiClient from "../client";
 
-export const getById = (id: string) => apiClient({
-  path: `unknown/${id}`,
+export const getById = (resourcePath: string, id: string) => apiClient({
+  path: `${resourcePath}/${id}`,
   method: 'GET'
 })
 
-export const getByPage = (page: number) => apiClient({
-  path: `unknown?page=${page}`,
+export const getByPage = (resourcePath: string, page: number) => apiClient({
+  path: `${resourcePath}?page=${page}`,
   method: 'GET'
 })

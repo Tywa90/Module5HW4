@@ -20,15 +20,17 @@ const UserUpdate: FC<any> = (): ReactElement => {
     const [response, setResponse] = useState<any>(null);
     const [open, setOpen] = React.useState(false);
     const navigate = useNavigate();
-    const { id, firstName,  lastName} = useParams();
+    const { id, firstName, lastName } = useParams();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        if (name === 'name') {
-            setName(value);
-        }
-        if (name === 'job') {
-            setJob(value);
+        const { id, value } = event.target;
+        switch (id) {
+            case 'name-input':
+                return setName(value);
+            case 'job-input':
+                return setJob(value);
+            default:
+                return console.log('something wrong in switch/case');
         }
     };
 
@@ -38,8 +40,6 @@ const UserUpdate: FC<any> = (): ReactElement => {
             try {
                 const response = await userApi.updateUser(id, name, job);
                 setResponse(response);
-
-                console.log(response.updatedAt);
             }
             catch (error) {
                 console.error(error);
@@ -70,9 +70,9 @@ const UserUpdate: FC<any> = (): ReactElement => {
                         <h3>{firstName} {lastName}</h3>
                     </Container>
                     <form onSubmit={handleSubmit}>
-                        <FormControl size='medium' margin='normal' style={{ display: 'flex', gap: '20px', minWidth: "300px"}}>
+                        <FormControl size='medium' margin='normal' style={{ display: 'flex', gap: '20px', minWidth: "300px" }}>
                             <TextField
-                                id="my-input"
+                                id="name-input"
                                 label="Name"
                                 name="name"
                                 value={name}
@@ -81,7 +81,7 @@ const UserUpdate: FC<any> = (): ReactElement => {
                                 color="success"
                             />
                             <TextField
-                                id="my-job"
+                                id="job-input"
                                 label="Job"
                                 name="job"
                                 value={job}
